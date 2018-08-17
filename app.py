@@ -49,7 +49,7 @@ def getAuctionsFromCharacter(aCharacter):
 	msg = ""
 	for x in auctions:
 		if x['owner'] == aCharacter:
-			gold = (x['bid']//100)//100
+			gold ='{:,}'.format((x['bid']//100)//100)
 			silver = (x['bid']//100) % 100
 			copper = (x['bid']%100)
 			bid = str(gold) + "G " + str(silver)+"S "+str(copper)+"C "

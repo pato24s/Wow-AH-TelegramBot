@@ -111,7 +111,7 @@ if __name__ == "__main__":
     dp.add_handler(CommandHandler('help',help))
     dp.add_handler(MessageHandler(Filters.command, unknown))
 
-    Start the webhook
+    # Start the webhook
     updater.start_webhook(listen="0.0.0.0",
                           port=int(PORT),
                           url_path=TOKEN)

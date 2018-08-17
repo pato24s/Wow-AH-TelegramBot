@@ -92,7 +92,7 @@ if __name__ == "__main__":
     TOKEN = "629926880:AAE60C7BDkDKpO96pbsMN2pDgXsFvlGsFCY"
     NAME = "WowAH_bot"
 
-    Port is given by Heroku
+    # Port is given by Heroku
     PORT = os.environ.get('PORT')
 
     # Enable logging

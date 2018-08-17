@@ -83,9 +83,13 @@ def unknown(bot, update):
 
 
 def auctions(bot, update, args):
-	character_name = args[0].lower().capitalize()
-	msg = getAuctionsFromCharacter(character_name)
-	bot.send_message(chat_id=update.message.chat_id, text=msg)
+	if len(args) ==0:
+		msg = "Cannot leave <character_name> blank"
+		bot.send_message(chat_id=update.message.chat_id, text=msg)
+	else:
+		character_name = args[0].lower().capitalize()
+		msg = getAuctionsFromCharacter(character_name)
+		bot.send_message(chat_id=update.message.chat_id, text=msg)
 
 if __name__ == "__main__":
     # Set these variable to the appropriate values

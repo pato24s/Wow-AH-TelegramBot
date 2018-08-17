@@ -90,7 +90,7 @@ def auctions(bot, update, args):
 if __name__ == "__main__":
     # Set these variable to the appropriate values
     TOKEN = "629926880:AAE60C7BDkDKpO96pbsMN2pDgXsFvlGsFCY"
-    NAME = "WowAH_bot"
+    NAME = "wow-ah-telegram-bot"
 
     # Port is given by Heroku
     PORT = os.environ.get('PORT')

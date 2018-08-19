@@ -22,7 +22,7 @@ def getAuctionHouseDataJson(last_modified):
 	url = files[0]['url']
 	date = files[0]['lastModified']
 	if(str(date) != last_modified):
-		bot.send_message(chat_id=update.message.chat_id, text="Refreshing Blizzard's database. Please wait")
+		#bot.send_message(chat_id=update.message.chat_id, text="Refreshing Blizzard's database. Please wait")
 
 		print("actualizando json")
 		response = requests.get(url=url)

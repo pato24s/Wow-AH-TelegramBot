@@ -38,6 +38,31 @@ def getAuctionHouseDataJson(last_modified):
 	
 	else:
 		print("json ya actualizado")
+def getAuctionsFromItem(anItemID):
+	last_modified_file = open('./data/last_modified','r')
+	last_modified = last_modified_file.read()
+	last_modified_file.close()
+	getAuctionHouseDataJson(last_modified)
+	with open('./data/data') as data_file:
+		allData = json.load(data_file)
+	auctions = allData['auctions']
+
+	msg = ""
+	for x in auctions:
+		if x['item'] == anItemID
+			gold ='{:,}'.format((x['bid']//100)//100).replace(',', '.')
+			silver = (x['bid']//100) % 100
+			copper = (x['bid']%100)
+			bid = str(gold) + "G " + str(silver)+"S "+str(copper)+"C "
+			owner = x['owner']
+			msg = msg + owner + " - " + bid + "\n"
+	if (len(msg)==0):
+		msg = "There are no auctions to show"
+	else:
+		msg = "Auctions \n" + msg
+
+	return msg
+
 
 def getAuctionsFromCharacter(aCharacter):
 	last_modified_file = open('./data/last_modified','r')
@@ -93,6 +118,12 @@ def auctions(bot, update, args):
 		msg = getAuctionsFromCharacter(character_name)
 		bot.send_message(chat_id=update.message.chat_id, text=msg)
 
+def daggermaw(bot, update):
+	itemID = 124669
+	msg = getAuctionsFromItem(itemID)
+	bot.send_message(chat_id=update.message.chat_id, text=msg)
+
+
 if __name__ == "__main__":
     # Set these variable to the appropriate values
     TOKEN = "629926880:AAE60C7BDkDKpO96pbsMN2pDgXsFvlGsFCY"
@@ -114,6 +145,7 @@ if __name__ == "__main__":
     dp.add_error_handler(error)
 
     dp.add_handler(CommandHandler('auctions',auctions,pass_args=True))
+    dp.add_handler(CommandHandler('daggermaw', daggermaw))
     dp.add_handler(CommandHandler('help',help))
     dp.add_handler(MessageHandler(Filters.command, unknown))
 

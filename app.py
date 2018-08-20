@@ -124,7 +124,10 @@ def daggermaw(bot, update):
 	itemID = 124669
 	msg = getAuctionsFromItem(itemID)
 	print(msg)
-	bot.send_message(chat_id=update.message.chat_id, text=msg)
+	lines= msg.splitlines()
+	for x in lines:
+		bot.send_message(chat_id=update.message.chat_id, text=x)
+	bot.send_message(chat_id=update.message.chat_id, text="- - - - -")
 
 
 if __name__ == "__main__":

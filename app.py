@@ -48,8 +48,8 @@ def getAuctionsFromItem(anItemID):
 	auctions = allData['auctions']
 	msgs = []
 	msg = ""
+	counter = 1
 	for x in auctions:
-		counter = 1
 		if x['item'] == anItemID:
 			quantity = x['quantity']
 			pricePerUnit = x['bid'] // quantity

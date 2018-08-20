@@ -46,9 +46,10 @@ def getAuctionsFromItem(anItemID):
 	with open('./data/data') as data_file:
 		allData = json.load(data_file)
 	auctions = allData['auctions']
-
+	msgs = []
 	msg = ""
 	for x in auctions:
+		counter = 1
 		if x['item'] == anItemID:
 			quantity = x['quantity']
 			pricePerUnit = x['bid'] // quantity
@@ -58,12 +59,17 @@ def getAuctionsFromItem(anItemID):
 			bid = str(gold) + "G " + str(silver)+"S "+str(copper)+"C "
 			owner = x['owner']
 			msg = msg + owner + " - price per unit: " + bid + "\n"
+			counter+=1
+			if counter == 10:
+				msgs.append(msg)
+				msg = ""
+				counter=0
 	if (len(msg)==0):
 		msg = "There are no auctions to show"
 	else:
 		msg = "Auctions \n" + msg
 
-	return msg
+	return msgs
 
 
 def getAuctionsFromCharacter(aCharacter):
@@ -122,13 +128,10 @@ def auctions(bot, update, args):
 
 def daggermaw(bot, update):
 	itemID = 124669
-	msg = getAuctionsFromItem(itemID)
-	print(msg)
-	lines= msg.splitlines()
-	for x in lines:
-		bot.send_message(chat_id=update.message.chat_id, text=x)
-	bot.send_message(chat_id=update.message.chat_id, text="- - - - -")
-
+	msgs = getAuctionsFromItem(itemID)
+	print(msgs)
+	for msg in msgs:
+		bot.send_message(chat_id=update.message.chat_id, text=msg)
 
 if __name__ == "__main__":
     # Set these variable to the appropriate values

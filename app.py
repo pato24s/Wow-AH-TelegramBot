@@ -49,7 +49,7 @@ def getAuctionsFromItem(anItemID):
 
 	msg = ""
 	for x in auctions:
-		if x['item'] == anItemID
+		if x['item'] == anItemID:
 			gold ='{:,}'.format((x['bid']//100)//100).replace(',', '.')
 			silver = (x['bid']//100) % 100
 			copper = (x['bid']%100)

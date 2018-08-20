@@ -50,12 +50,14 @@ def getAuctionsFromItem(anItemID):
 	msg = ""
 	for x in auctions:
 		if x['item'] == anItemID:
-			gold ='{:,}'.format((x['bid']//100)//100).replace(',', '.')
-			silver = (x['bid']//100) % 100
-			copper = (x['bid']%100)
+			quantity = x['quantity']
+			pricePerUnit = x['bid'] // quantity
+			gold ='{:,}'.format((pricePerUnit//100)//100).replace(',', '.')
+			silver = (pricePerUnit//100) % 100
+			copper = (pricePerUnit%100)
 			bid = str(gold) + "G " + str(silver)+"S "+str(copper)+"C "
 			owner = x['owner']
-			msg = msg + owner + " - " + bid + "\n"
+			msg = msg + owner + " - price per unit: " + bid + "\n"
 	if (len(msg)==0):
 		msg = "There are no auctions to show"
 	else:

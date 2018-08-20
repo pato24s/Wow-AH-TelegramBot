@@ -49,8 +49,12 @@ def getAuctionsFromItem(anItemID):
 	msgs = []
 	msg = ""
 	counter = 1
+	firstMatch = True
 	for x in auctions:
 		if x['item'] == anItemID:
+			if firstMatch:
+				msg = "Auctions \n"
+				firstMatch = False
 			quantity = x['quantity']
 			pricePerUnit = x['bid'] // quantity
 			gold ='{:,}'.format((pricePerUnit//100)//100).replace(',', '.')
@@ -66,8 +70,6 @@ def getAuctionsFromItem(anItemID):
 				counter=0
 	if (len(msgs)==0):
 		msgs.append("There are no auctions to show")
-	else:
-		msgs.append("Auctions \n" + msg)
 
 	return msgs
 

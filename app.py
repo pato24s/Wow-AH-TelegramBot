@@ -121,6 +121,7 @@ def auctions(bot, update, args):
 def daggermaw(bot, update):
 	itemID = 124669
 	msg = getAuctionsFromItem(itemID)
+	print(msg)
 	bot.send_message(chat_id=update.message.chat_id, text=msg)
 
 

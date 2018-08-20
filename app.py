@@ -64,10 +64,10 @@ def getAuctionsFromItem(anItemID):
 				msgs.append(msg)
 				msg = ""
 				counter=0
-	if (len(msg)==0):
-		msg = "There are no auctions to show"
+	if (len(msgs)==0):
+		msgs.append("There are no auctions to show")
 	else:
-		msg = "Auctions \n" + msg
+		msgs.append("Auctions \n" + msg)
 
 	return msgs
 

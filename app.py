@@ -64,7 +64,7 @@ def getAuctionsFromItem(anItemID):
 			owner = x['owner']
 			msg = msg + owner + " - price per unit: " + bid + "\n"
 			counter+=1
-			if counter == 10:
+			if counter == 100:
 				msgs.append(msg)
 				msg = ""
 				counter=0

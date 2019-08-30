@@ -8,11 +8,11 @@ import logging
 from telegram import Bot
 from telegram.ext import Dispatcher, CommandHandler, MessageHandler, Updater, Filters
 
-apikey = "e8z3nuc6af5qeu5svxq6t5w2y43a5v5m"
+apikey = "USn25iW6D75r5pU3nRKqHmX8UIWYrQK40K"
 
 
 def getAuctionHouseDataURL():
-	url = "https://us.api.battle.net/wow/auction/data/Quel'Thalas?locale=es_MX&apikey="+apikey
+	url = "https://us.api.blizzard.com/wow/auction/data/Quel'Thalas??locale=en_US&access_token="+apikey
 	response = requests.get(url=url)
 	return response.json()
 
@@ -100,7 +100,7 @@ def getAuctionsFromCharacter(aCharacter):
 	return msg
 
 def getItemNameFromId(anItemID):
-	url = "https://us.api.battle.net/wow/item/"+str(anItemID)+"?locale=en_US&apikey="+apikey
+	url = "https://us.api.blizzard.com/data/wow/item/"+str(anItemID)+"?namespace=static-us&locale=en_US&access_token="+apikey
 	responseJson = requests.get(url=url).json()
 	return responseJson['name']
 

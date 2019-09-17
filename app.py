@@ -8,11 +8,11 @@ import logging
 from telegram import Bot
 from telegram.ext import Dispatcher, CommandHandler, MessageHandler, Updater, Filters
 
-apikey = "USn25iW6D75r5pU3nRKqHmX8UIWYrQK40K"
+apikey = "USvTAH3yhAE3i188kmpg3w3CTht96BFbc8"
 
 
 def getAuctionHouseDataURL():
-	url = "https://us.api.blizzard.com/wow/auction/data/Quel'Thalas??locale=en_US&access_token="+apikey
+	url = "https://us.api.blizzard.com/wow/auction/data/QUELTHALAS?locale=en_US&access_token="+apikey
 	response = requests.get(url=url)
 	return response.json()
 

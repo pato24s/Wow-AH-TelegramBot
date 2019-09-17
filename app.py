@@ -134,6 +134,21 @@ def daggermaw(bot, update):
 	print(msgs)
 	for msg in msgs:
 		bot.send_message(chat_id=update.message.chat_id, text=msg)
+		
+def token(bot, update):
+	url = "https://us.api.blizzard.com/data/wow/token/index?namespace=dynamic-us&locale=en_US&access_token=" +apiKey
+	responseJson = requests.get(url=url).json()
+	price = responseJson['price']
+	last_updated = responseJson['last_updated_timestamp']
+	last_updated = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(last_updated))
+	bot.send_message(chat_id=update.message.chat_id, text=last_updated)
+	gold ='{:,}'.format((price//100)//100).replace(',', '.')
+	silver = (price//100) % 100
+	copper = (price%100)
+	price = str(gold) + "G " + str(silver)+"S "+str(copper)+"C "
+	bot.send_message(chat_id=update.message.chat_id, text=last_updated)
+	bot.send_message(chat_id=update.message.chat_id, text=price)
+
 
 if __name__ == "__main__":
     # Set these variable to the appropriate values
@@ -157,6 +172,7 @@ if __name__ == "__main__":
 
     dp.add_handler(CommandHandler('auctions',auctions,pass_args=True))
     dp.add_handler(CommandHandler('daggermaw', daggermaw))
+    dp.add_handler(CommandHandler('token', token))
     dp.add_handler(CommandHandler('help',help))
     dp.add_handler(MessageHandler(Filters.command, unknown))
 

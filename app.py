@@ -136,7 +136,7 @@ def daggermaw(bot, update):
 		bot.send_message(chat_id=update.message.chat_id, text=msg)
 		
 def token(bot, update):
-	url = "https://us.api.blizzard.com/data/wow/token/index?namespace=dynamic-us&locale=en_US&access_token=" +apiKey
+	url = "https://us.api.blizzard.com/data/wow/token/index?namespace=dynamic-us&locale=en_US&access_token=" +apikey 
 	responseJson = requests.get(url=url).json()
 	price = responseJson['price']
 	last_updated = responseJson['last_updated_timestamp']
